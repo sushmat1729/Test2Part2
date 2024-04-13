@@ -17,6 +17,9 @@ ID: c0901939-->
             var numCols = parseInt(document.getElementById('t2').value);
 
             var table = document.createElement('table');
+            table.id = 'dynamicTable';
+            table.style.width = '70%'; 
+            table.style.margin = '30px auto'; 
             table.style.border = '1px solid black';
 			table.style.border = 'collapse'
 			// Set border style
@@ -33,16 +36,26 @@ ID: c0901939-->
             document.body.innerHTML = ''; 
             document.body.appendChild(table);
 
+            // Creating a div for buttons to center  
+              let buttonContainer = document.createElement('div');
+              buttonContainer.style.textAlign = 'center'; 
+
             // Add Add Row and Add Column buttons
             var addRowBtn = document.createElement('button');
             addRowBtn.textContent = 'Add Row';
             addRowBtn.onclick = addRow;
-            document.body.appendChild(addRowBtn);
+            buttonContainer.appendChild(addRowBtn);
+
 
             var addColumnBtn = document.createElement('button');
             addColumnBtn.textContent = 'Add Column';
             addColumnBtn.onclick = addColumn;
-            document.body.appendChild(addColumnBtn);
+            buttonContainer.appendChild(addColumnBtn);
+
+            document.body.appendChild(buttonContainer);
+
+
+
         }
 		//Function to add row
         function addRow() {
