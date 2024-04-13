@@ -1,50 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final test lab</title>
-</head>
-<body>
-<font size="8" color="green">Final test lab</font><br><br>
-Number of rows: <input type="number" id="numRows" /><br><br>
-Number of cols: <input type="number" id="numCols" /><br><br>
+<!--Name: Sushma Telagamsetti
+ID: c0901939-->
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+	Number of rows: <input type="text" id="t1" /><br><br>
+	Number of cols: <input type="text" id="t2" /><br><br>
+	
+	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+	
+	<button id="b2" onclick="addColumn()">Add Column</button>
+	
+	<button id="b3" onclick="addRow()">Add Row</button>
+		
+	<script language="javascript">
+        function generateTable() {
+            var numRows = parseInt(document.getElementById('t1').value);
+            var numCols = parseInt(document.getElementById('t2').value);
 
-<button id="generateBtn">Generate Table</button><br><br>
+            var table = document.createElement('table');
+            table.style.border = '1px solid black';
+			table.style.border = 'collapse'
+			// Set border style
 
-<div id="buttonsContainer" style="display: none;">
-    <button id="addRowBtn">Add Row</button>
-    <button id="addColumnBtn">Add Column</button>
-</div>
-<br>
-<table id="myTable">
-</table>
+            for (var i = 0; i < numRows; i++) {
+                var row = table.insertRow();
+                for (var j = 0; j < numCols; j++) {
+                    var cell = row.insertCell();
+                    cell.innerHTML = "Row " + (i + 1) + ", Col " + (j + 1);
+                    cell.style.border = '1px solid black'; //to  Set border style
+                }
+            }
+            // Clear everything
+            document.body.innerHTML = ''; 
+            document.body.appendChild(table);
 
-<script>
-    document.getElementById('generateBtn').addEventListener('click', function() {
-        generateTable();
-        document.getElementById('buttonsContainer').style.display = 'block';
-        document.getElementById('numRows').disabled = true;
-        document.getElementById('numCols').disabled = true;
-        document.getElementById('generateBtn').disabled = true;
-    });
-   
-    function generateTable() {
-        var numRows = document.getElementById('numRows').value;
-        var numCols = document.getElementById('numCols').value;
+            // Add Add Row and Add Column buttons
+            var addRowBtn = document.createElement('button');
+            addRowBtn.textContent = 'Add Row';
+            addRowBtn.onclick = addRow;
+            document.body.appendChild(addRowBtn);
 
-        var table = document.getElementById('myTable');
-        table.innerHTML = ''; 
+            var addColumnBtn = document.createElement('button');
+            addColumnBtn.textContent = 'Add Column';
+            addColumnBtn.onclick = addColumn;
+            document.body.appendChild(addColumnBtn);
+        }
+		//Function to add row
+        function addRow() {
+            var table = document.querySelector('table');
+            var numCols = table.rows[0].cells.length;
+            var numRows = table.rows.length;
+            var newRow = table.insertRow();
 
-        for (var i = 0; i < numRows; i++) {
-            var row = table.insertRow();
-            for (var j = 0; j < numCols; j++) {
-                var cell = row.insertCell();
-                cell.innerHTML = "Row " + (i + 1) + ", Col " + (j + 1);
+            for (var i = 0; i < numCols; i++) {
+                var cell = newRow.insertCell();
+                cell.innerHTML = "Row " + (numRows + 1) + ", Col " + (i + 1);
+                cell.style.border = '1px solid black'; 
             }
         }
-    }
-</script>
+		//Function to add column
+        function addColumn() {
+            var table = document.querySelector('table');
+            var numRows = table.rows.length;
+            var numCols = table.rows[0].cells.length;
 
-</body>
+            for (var i = 0; i < numRows; i++) {
+                var cell = table.rows[i].insertCell();
+                cell.innerHTML = "Row " + (i + 1) + ", Col " + (numCols + 1);
+                cell.style.border = '1px solid black'; // Set border style
+            }
+        }
+
+    </script>
+
 </html>
