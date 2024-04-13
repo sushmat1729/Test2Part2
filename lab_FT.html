@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final test lab</title>
+</head>
+<body>
+<font size="8" color="green">Final test lab</font><br><br>
+Number of rows: <input type="number" id="numRows" /><br><br>
+Number of cols: <input type="number" id="numCols" /><br><br>
+
+<button id="generateBtn">Generate Table</button><br><br>
+
+<div id="buttonsContainer" style="display: none;">
+    <button id="addRowBtn">Add Row</button>
+    <button id="addColumnBtn">Add Column</button>
+</div>
+<br>
+<table id="myTable">
+</table>
+
+<script>
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        generateTable();
+        document.getElementById('buttonsContainer').style.display = 'block';
+        document.getElementById('numRows').disabled = true;
+        document.getElementById('numCols').disabled = true;
+        document.getElementById('generateBtn').disabled = true;
+    });
+   
+    function generateTable() {
+        var numRows = document.getElementById('numRows').value;
+        var numCols = document.getElementById('numCols').value;
+
+        var table = document.getElementById('myTable');
+        table.innerHTML = ''; 
+
+        for (var i = 0; i < numRows; i++) {
+            var row = table.insertRow();
+            for (var j = 0; j < numCols; j++) {
+                var cell = row.insertCell();
+                cell.innerHTML = "Row " + (i + 1) + ", Col " + (j + 1);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
